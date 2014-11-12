@@ -1,15 +1,22 @@
 title: Chrome Devtools Rendering Settings
 date: 2014-11-12 16:47:02
-tags: 
+categories:
+- 性能
+tags:
+- chrome
+- devtools
 ---
 
 请参考下图打开设置面板：
+
 ![enter image description here](http://fedev.baidu.com/~guoshuyan/render-settings/rendering-settings.png)
 
 # Show paint rectangles
 
 勾选此项后，你可以看到Chrome的绘制区域。这可以帮助你找到并最终避免页面上冗余的绘制过程[[1]](http://www.html5rocks.com/en/tutorials/speed/unnecessary-paints/)。同时，当有悬停链接，弹出层或动态更新内容等行为发生时，你也能通过它研究绘制行为[[2]](http://www.paulirish.com/2011/viewing-chromes-paint-cycle/)。
+
 ![enter image description here](http://fedev.baidu.com/~guoshuyan/render-settings/show-paint-rects.png)
+
 显示绘制区域能够同时展示每一帧内所有的绘制区域，从而明晰哪些行为导致了性能降低。理想情况下，你需要尽可能保证最少的绘制区域数量。
 
 # Show composited layer borders
