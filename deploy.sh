@@ -7,6 +7,6 @@ hexo generate;
  git config user.name "tbfe"
  git config user.email "tbfe-ci@baidu.com"
  git add .
- git commit -m "Deployed to Github Pages"
+ git commit -m "Deployed to Github Pages [skip ci]"
  git push --force "https://${GH_TOKEN}@${GH_REF}" master:gh-pages
 )
