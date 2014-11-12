@@ -9,5 +9,8 @@
   },
   "scripts": {
     "deploy": "./deploy.sh"
+  },
+  "devDependencies": {
+    "hexo": "^2.8.3"
   }
 }
