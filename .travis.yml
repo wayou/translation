@@ -1,0 +1,6 @@
+language: node_js
+script: npm run-script deploy
+env:
+ global:
+ - GH_REF: github.com/tbfe/translation.git
+ - secure: L4YJRfssPrUxLevsVQnvVdpeG1/FsJeNEkxoZYVK6LUhB1QiUTM0ipITE0BO0t2mbhIWwOCAOQ2gUHhNWNs6OJBsZb9+9l88UtfekAu9XWEcJUfDu+il3ofGyIa7PLbKmg+8Iz6OjBtNnV255tA0wAmf5449XaMd2scAGcEec1k=
