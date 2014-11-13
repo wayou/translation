@@ -2,7 +2,8 @@
 rm -rf public || exit 0;
 mkdir public;
 hexo generate;
-( cd public
+if [ "$1" != "false" ]
+then ( cd public
  git init
  git config user.name "tbfe"
  git config user.email "tbfe-ci@baidu.com"
@@ -10,3 +11,4 @@ hexo generate;
  git commit -m "Deployed to Github Pages [skip ci]"
  git push --force --quiet "https://${GH_TOKEN}@${GH_REF}" master:gh-pages
 )
+fi

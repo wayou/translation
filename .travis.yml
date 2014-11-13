@@ -1,5 +1,5 @@
 language: node_js
-script: npm run-script deploy
+script: 'npm run-script build "${TRAVIS_PULL_REQUEST}"'
 env:
  global:
  - GH_REF: github.com/tbfe/translation.git
