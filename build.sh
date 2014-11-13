@@ -2,7 +2,8 @@
 rm -rf public || exit 0;
 mkdir public;
 hexo generate;
-if [ "$1" != "false" ]
+if [ "$1" = "false" ] 
+# not a pull request, deploy to github pages
 then ( cd public
  git init
  git config user.name "tbfe"
