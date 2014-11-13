@@ -3,4 +3,4 @@ script: npm run-script deploy
 env:
  global:
  - GH_REF: github.com/tbfe/translation.git
- - secure: L4YJRfssPrUxLevsVQnvVdpeG1/FsJeNEkxoZYVK6LUhB1QiUTM0ipITE0BO0t2mbhIWwOCAOQ2gUHhNWNs6OJBsZb9+9l88UtfekAu9XWEcJUfDu+il3ofGyIa7PLbKmg+8Iz6OjBtNnV255tA0wAmf5449XaMd2scAGcEec1k=
+ - secure: Dk4QLWLpuFD2OljszMYI54xMFDCwgM+/ar8hyWCf+hnX9M0judsS4L3U9u434oiLX15rO92BJp3FVo1gGGEaGHQRGsTXZN5IBwggJA4zz8+fN/sOldTNBEVusA/JhwmLT5WLPtpWzTbjgHitiw3+omye3n6jshOZ6GofOFtbB9Q=
