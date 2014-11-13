@@ -1,5 +1,9 @@
 title: Chrome Devtools Rendering Settings
 date: 2014-11-12 16:47:02
+translator: guoshuyan
+origin:
+  title: Chrome Devtools Rendering Settings
+  url: https://developer.chrome.com/devtools/docs/rendering-settings
 categories:
 - 性能
 tags:
@@ -50,5 +54,4 @@ tags:
 展现使滚动变慢的区域。对触摸和滚动事件的监听会使滚动延迟。有些区域需要在滚动时绘制其内容。更多内容可参考[[7]](https://code.google.com/p/chromium/issues/detail?id=253552#c13)
 
 -----
-> 原文链接 [Rendering Settings](https://developer.chrome.com/devtools/docs/rendering-settings)
 > Content available under the [CC-By 3.0 license](http://creativecommons.org/licenses/by/3.0/)
