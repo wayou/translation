@@ -27,7 +27,7 @@ npm install hexo -g
 新增文章
 
 ```
-hexo new Post-Title
+hexo new "Post Title"
 ```
 所有的文章都在`source/_posts`目录下
 
