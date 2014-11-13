@@ -31,13 +31,13 @@ hexo new Post-Title
 ```
 所有的文章都在`source/_posts`目录下
 
-(本地预览)[http://localhost:4000/]
+[本地预览](http://localhost:4000/)
 
 ```
 hexo server
 ```
 
-完成翻译后，提交并给我们发一个 pull request，会有一位同学来 review 你的翻译，问题就解决后你的改动即会被 merge。
+完成翻译后，提交并给我们发一个 pull request，会有一位同学来 review 你的翻译，问题解决后你的改动即会被 merge。
 
 PR 可能会由于以下原因被拒绝
 
