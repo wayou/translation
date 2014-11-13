@@ -453,8 +453,18 @@ margin on the iframe, cause it breaks stuff. */
     text-decoration: none;
 }
 
+.post-origin {
+    font-size: 1.6rem;
+    margin-bottom: 5px;
+}
+
 .post-meta a:hover {
     text-decoration: underline;
+}
+
+.post-edit {
+    float: right;
+    font-size: 1.6rem;
 }
 
 .user-meta {
