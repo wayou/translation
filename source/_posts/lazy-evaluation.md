@@ -14,13 +14,13 @@ tags:
 > 「注释」作者在本文里没有说明这么一个事实：
 >  目前的版本`Lo-Dash v2.4.1`并没有引入延迟求值的特性，`Lo-Dash 3.0.0-pre `中部分方法进行了引入，比如`filter()`,`map()`,`reverse()`。
 
-我时常觉得像Lo-Dash这样优秀的库已经无法再优化了。它整合了各种[奇技淫巧](https://www.youtube.com/watch?v=NthmeLEhDDM)已经将JavaScript的性能开发到了极限。它使用了最快速的语句，优化的算法，甚至还会在发版前做性能测试以保证回归没问题。
+我时常觉得像`Lo-Dash`这样优秀的库已经无法再优化了。它整合了各种[奇技淫巧](https://www.youtube.com/watch?v=NthmeLEhDDM)已经将JavaScript的性能开发到了极限。它使用了最快速的语句，优化的算法，甚至还会在发版前做性能测试以保证回归没问题。
 
 <!--more-->
 
 # 延迟求值
 
-但似乎我错了-还可以让Lo-Dash有明显的提升。只需将关注点从细微的优化转移到算法上来。譬如，在一次循环中我们往往会去优化循环体：
+但似乎我错了-还可以让`Lo-Dash`有明显的提升。只需将关注点从细微的优化转移到算法上来。譬如，在一次循环中我们往往会去优化循环体：
 
 ```js
 var len = getLength();
@@ -31,7 +31,7 @@ for(var i = 0; i < len; i++) {
 
 但针对循环体的优化往往很难，很多时候已经到极限了。相反，优化`getLength()` 函数尽量减少循环次数变得更有意义了。你想啊，这个数值越小，需要循环的`10ms`就越少。
 
-这便是基于Lo-Dash实现延迟求值的大致思路。重要的是减少循环次数，而不是每次循环的时间。让我们考察下面的例子：
+这便是`Lo-Dash`实现延迟求值的大致思路。重要的是减少循环次数，而不是每次循环的时间。让我们考察下面的例子：
 
 ```js
 function priceLt(x) {
@@ -49,11 +49,11 @@ var chosen = _(gems).filter(priceLt(10)).take(3).value();
 
 我们只想取出3个价格低于10元的小球。通常情况下我们先过滤整个数据源，最后从所有小于10的元素里返回前面三个即可。
 
-![lo-dash naive](/translation/asset/img/lazy-evaluation/lodash-naive.gif)
+![lo-dash naive](lodash-naive.gif)
 
-但这种做法并不优雅。它处理了全部8个数据，但其实只需要处理前端5个我们就能拿到结果了。延迟求值这种算法，着重于处理最小的数据而返回正确的结果。优化后如下图所示：
+但这种做法并不优雅。它处理了全部8个数据，但其实只需要处理前面5个我们就能拿到结果了。同样为了得到正确的结果，延迟求值则只处理最少的元素。优化后如下图所示：
 
-![lo-dash naive](/translation/asset/img/lazy-evaluation/grafika.gif)
+![grafika](grafika.gif)
 
 一下子就获得了37.5%的性能提升。很容易找出提升X1000+的例子。比如：
 
@@ -68,14 +68,14 @@ function contains55(str) {
 var r = _(phoneNumbers).map(String).filter(contains55).take(100);
 ```
 
-这个例子中`map`和`filter` 将遍历99,999 个元素，但很有可能我们只需处理到1，000个元素的时候就已经拿到想要的结果了。这回性能的提升就太明显了（[benchmark](http://jsperf.com/lazy-demo)）：
+这个例子中`map`和`filter` 将遍历99999 个元素，但很有可能我们只需处理到1000个元素的时候就已经拿到想要的结果了。这回性能的提升就太明显了（[benchmark](http://jsperf.com/lazy-demo)）：
 
-![benchmark](/translation/asset/img/lazy-evaluation/benchmark.jpg)
+![benchmark](benchmark.jpg)
 
 
 # 流水线
 
-延迟求值同时带来了另一个好处，我称之为“流水线”。要旨就是不避免产生中间数组，而是对一个元素一次性进行完所有操作。下面用代码说话：
+延迟求值同时带来了另一个好处，我称之为“流水线”。要旨就是避免产生中间数组，而是对一个元素一次性进行完所有操作。下面用代码说话：
 
 ```js
 var result = _(source).map(func1).map(func2).map(func3).value();
@@ -114,7 +114,7 @@ for(var i = 0; i < source.length; i++) {
 
 # 延迟执行
 
-延迟求值带来的另一个好处是延迟执行。无论何时你写了段链式代码，只有在显示地调用了`.value()`后才会真正执行。这样一来，在数据源需要异步去拉取的情况下，可以保证我们处理的是最新的数据。
+延迟求值带来的另一个好处是延迟执行。无论何时你写了段链式代码，只有在显式地调用了`.value()`后才会真正执行。这样一来，在数据源需要异步去拉取的情况下，可以保证我们处理的是最新的数据。
 
 ```js
 var wallet = _(assets).filter(ownedBy('me'))
@@ -131,5 +131,7 @@ $json.get("/new/assets").success(function(data) {
 
 # 后记
 
-延迟求值并且不算什么新技术。在一些库中已经在使用了，比如[LINQ](http://en.wikipedia.org/wiki/Language_Integrated_Query),[Lazy.js](http://danieltao.com/lazy.js/)还有其他等等。那么问题来了，Lo-Dash存在的意义是啥？我想就是你仍然可以使用你熟悉的`Underscore` 接口但享受一个更高效的底层实现，不需要额外的学习成本，代码上面也不会有大的变动，只需稍加修改。
+延迟求值并且不算什么新技术。在一些库中已经在使用了，比如[LINQ](http://en.wikipedia.org/wiki/Language_Integrated_Query),[Lazy.js](http://danieltao.com/lazy.js/)还有其他等等。那么问题来了，`Lo-Dash`存在的意义是啥？我想就是你仍然可以使用你熟悉的`Underscore` 接口但享受一个更高效的底层实现，不需要额外的学习成本，代码上面也不会有大的变动，只需稍加修改。
+
+> 译注：对于`lazy evaluation` 与`deferred execution` 中`lazy` 与`deferred` 的区分，在翻译时找不到恰当的区分。前者用主流使用的「延迟」会更易懂，而后者同时也译为「延迟」, 但他们在记性上还是存在一定差别的，具体的讨论可见[这里](https://github.com/tbfe/translation/pull/2#discussion_r20362267)。
 
